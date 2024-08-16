@@ -1,0 +1,1 @@
+console.log(alert("Welcome to Our Website"));
