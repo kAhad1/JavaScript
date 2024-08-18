@@ -1,1 +1,1 @@
-console.log(alert("Error! Please Enter a valid Password"));
+alert("Error! Please Enter a valid Password");

@@ -1,1 +1,1 @@
-console.log(alert("Welcome to Our Website"));
+alert("Welcome to Our Website");

@@ -1,0 +1,11 @@
+document.write("Table of 4  <br><br>");
+document.write("4 x 1  = 4  <br>");
+document.write("4 x 2  = 8  <br>");
+document.write("4 x 3  = 12 <br>");
+document.write("4 x 4  = 16 <br>");
+document.write("4 x 5  = 20 <br>");
+document.write("4 x 6  = 24 <br>");
+document.write("4 x 7  = 28 <br>");
+document.write("4 x 8  = 32 <br>");
+document.write("4 x 9  = 36 <br>");
+document.write("4 x 10 = 40 ");

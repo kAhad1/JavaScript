@@ -1,2 +1,2 @@
-console.log(alert("Welcome to JS Land..."));
-console.log(alert("Happy Coding!"));
+alert("Welcome to JS Land...");
+alert("Happy Coding!");
