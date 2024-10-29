@@ -6,6 +6,9 @@ body {
     align-items: center;
     margin-top: 50px;
 }
+h1{
+    margin-bottom: 30px;
+}
 #inp {
     padding: 10px;
     font-size: 16px;
@@ -13,6 +16,7 @@ body {
     background-color: #d2cdcd9c;
     border-radius: 15px;
     color: #000;
+    margin-bottom: 15px;
 }
 button {
     padding: 10px;
