@@ -1,0 +1,71 @@
+/* style */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+#inp {
+    padding: 10px;
+    font-size: 16px;
+    width: 250px;
+    background-color: #d2cdcd9c;
+    border-radius: 15px;
+    color: #000;
+}
+button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 15px;
+   
+}
+button[onclick^="addTodo"] {
+    background-color: #2405be; 
+        color: #ffffff;           
+}
+button[onclick^="addTodo"]:hover {
+    background-color: #310bef; 
+        color: #ffffff;           
+}
+button[onclick^="deleteTodo"] {
+    background-color: #ed1b1b; 
+        color: #ffffff;           
+}
+
+button[onclick^="deleteTodo"]:hover {
+    background-color: #ce0e0e; 
+}
+button[onclick^="updateTodoPrompt"] {
+    background-color: #4caf50; 
+        color: #ffffff;            
+}
+
+
+button[onclick^="updateTodoPrompt"]:hover {
+    background-color: #45a049;
+}
+#todos {
+    margin-top: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 10px;
+}
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgb(230, 230, 81);
+}
+.todo p {
+    margin: 0;
+    font-size: 16px;
+}
