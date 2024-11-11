@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0d0d0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .app {
+    width: 100%;
+    max-width: 450px;
+    background: #fbb63f;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  h1 {
+    font-size: 2em;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    font-size: 1.1em;
+    border: 2px solid #ebbd03;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #537505;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #34db8a;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:hover {
+    background-color: #29b95e;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border: 1px solid #e9c880;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  li:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+  }
+  
+  .todo-text {
+    flex: 1;
+    text-align: left;
+    font-size: 1.1em;
+    color: #000;
+  }
+  
+  .completed .todo-text {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+  
+  button.edit, button.delete {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    color: #34db4d;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  button.edit {
+    margin-right: 10px;
+  }
+  
+  button.edit:hover {
+    color: #23b15c;
+  }
+  
+  button.delete {
+    color: #e74c3c;
+  }
+  
+  button.delete:hover {
+    color: #c0392b;
+  }
+  
+  input.edit-input {
+    padding: 10px;
+    font-size: 1.1em;
+    width: 100%;
+    border: 2px solid #0aa55f;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  input.edit-input:focus {
+    border-color: rgb(3, 119, 30);
+  }
