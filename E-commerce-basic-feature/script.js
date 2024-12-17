@@ -4,7 +4,7 @@
 let products = [
     { id: 1, name: "Product 1", price: "Rs 200", description: "This is Product 1" },
     { id: 2, name: "Product 2", price: "Rs 330", description: "This is Product 2" },
-    { id: 3, name: "Product 3", price: "Rs420", description: "This is Product 3" },
+    { id: 3, name: "Product 3", price: "Rs 420", description: "This is Product 3" },
     { id: 4, name: "Product 4", price: "Rs 1000", description: "This is Product 4" },
   ];
   
