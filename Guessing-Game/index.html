@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    .game-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    h1 {
+        color: #333;
+    }
+    
+    .lives {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    #guessInput {
+        padding: 10px;
+        font-size: 1rem;
+        margin-right: 10px;
+        width: 200px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    input:disabled {
+        background-color: #f1f1f1;
+        cursor: not-allowed;
+    }
+    
+    .game-message {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .restart-container {
+        margin-top: 20px;
+    }
+    
+    #restartBtn {
+        background-color: #f44336;
+    }
+    
+    #restartBtn:hover {
+        background-color: #d32f2f;
+    }</style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Guess the Number Game</h1>
+        <div class="lives">
+            <span id="lives">🔋🔋🔋</span>
+        </div>
+        <div class="game-message">
+            <p id="message">Guess a number between 1 and 10</p>
+        </div>
+        <div class="input-container">
+            <input type="number" id="guessInput" placeholder="Enter your guess" />
+            <button id="guessBtn">Submit</button>
+        </div>
+        <div class="restart-container">
+            <button id="restartBtn" onclick="restartGame()" style="display:none;">Restart Game</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
