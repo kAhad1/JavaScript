@@ -7,7 +7,7 @@ const messageElement = document.getElementById('message');
 const restartBtn = document.getElementById('restartBtn');
 
 function updateLives() {
-    livesElement.textContent = '🔋'.repeat(lives);
+    livesElement.textContent = '❤️'.repeat(lives);
 }
 
 function checkGuess() {
