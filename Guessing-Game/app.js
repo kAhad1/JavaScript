@@ -13,7 +13,7 @@ function updateLives() {
 function checkGuess() {
     const userGuess = parseInt(guessInput.value);
 
-    if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+    if (isNaN(userGuess) || userGuess < 1 || userGuess > 1000000) {
         messageElement.textContent = 'Please enter a number between 1 and 10.';
         return;
     }
