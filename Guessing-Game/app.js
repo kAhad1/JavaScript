@@ -45,7 +45,7 @@ function restartGame() {
     guessBtn.disabled = false;
     guessInput.value = '';
     updateLives();
-    messageElement.textContent = 'Guess a number between 1 and 10!';
+    messageElement.textContent = 'Guess a number!';
     restartBtn.style.display = 'none';
 }
 
