@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #87ceeb;
+    background: #000000;
     color: #333;
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@ body {
   
   .container {
     text-align: center;
-    background: white;
+    background: rgb(84, 181, 230);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -39,7 +39,7 @@ body {
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background: #0078D7;
+    background: #1f056e;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -47,7 +47,7 @@ body {
   }
   
   button:hover {
-    background: #005fa3;
+    opacity: 0.8;
   }
   
   #weatherResult {
