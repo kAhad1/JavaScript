@@ -6,8 +6,11 @@ let getFacts = async()=>{
     let promise= await fetch(URL);
     console.log(promise);
     let data = await promise.json();
-    getImages.innerHTML = `<a href="${data[9].url}"> Image </a>`; 
-    data.reques
+
+
+        getImages.innerHTML = `<a href="${data[9].url}"> Image </a>`; 
+    
+    
 }
 
 btn.addEventListener('click',getFacts);
