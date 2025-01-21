@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
   if (window.location.pathname === '/buttonSlider') {
     console.log("widnow button slider");
