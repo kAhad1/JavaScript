@@ -161,63 +161,78 @@ const countryList = {
   };
 
 
-const baseURL="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2025-01-06/v1/currencies/";
+const baseURL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2025-01-06/v1/currencies/";
 const dropdowns = document.querySelectorAll(".dropdown select");
 const fromCurr = document.querySelector(".from select"); 
-const toCurr = document.querySelector(".to select") ;
+const toCurr = document.querySelector(".to select");
 const btn = document.querySelector('button');
 const amVal = document.querySelector("input");
 const msg = document.querySelector(".msg");
-for(let select of dropdowns){
-    for(code in countryList){
-     
+
+for (let select of dropdowns) {
+    for (let code in countryList) {
         let options = document.createElement("option");
         options.innerText = code;
-        options.value = code
-        if(select.name==='from'&& code==="PKR"){
-            options.selected = 'selected';
+        options.value = code;
+        
+        if (select.name === 'from' && code === "PKR") {
+            options.selected = true;
         }
-        if(select.name==='to' && code==="JOD"){
-            options.selected = 'selected';
+        if (select.name === 'to' && code === "JOD") {
+            options.selected = true;
         }
-        select.append(options)
+        select.append(options);
     }
-    select.addEventListener("change", (evnt)=>{
+    select.addEventListener("change", (evnt) => {
         changeFlag(evnt.target);
     });
 }
 
-
-
-let changeFlag = (elem) =>{
+let changeFlag = (elem) => {
     let code = elem.value;
     let countryCode = countryList[code];
     let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
     let img = elem.parentElement.querySelector("img");
-    
-  img.src = newSrc;
-}
-let generateRate = async () =>{
-   let elem = amVal.value; 
-    let countryCode = countryList[code];    
-    if (elem === "" || elem < 1) {
-        elem = 1;
-        amVal.value = "1";
-      }
-      const URL = `${baseURL}${fromCurr.value.toLowerCase()}.json`;
-      let response = await fetch(URL);
-      let data = await response.json();
-      let rate = data[toCurr.value.toLowerCase()];
-      console.log(data);
-      let finalAmount = amVal.value * rate;
-      msg.innerText = `${amVal.value} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+    img.src = newSrc;
 }
 
-btn.addEventListener("click",  (evnt)=>{
+let generateRate = async () => {
+    let amount = amVal.value;
+    
+    if (amount === "" || amount < 1) {
+        amount = 1;
+        amVal.value = "1";
+    }
+    
+    const URL = `${baseURL}${fromCurr.value.toLowerCase()}.json`;
+    
+    try {
+        let response = await fetch(URL);
+        let data = await response.json();
+
+        // Fetching the correct exchange rate
+        let rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
+        
+        if (!rate) {
+            msg.innerText = "Exchange rate not available.";
+            return;
+        }
+        
+        let finalAmount = (amount * rate).toFixed(3);
+        msg.innerText = `${amount} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+       
+    } catch (error) {
+        console.error("Error fetching exchange rate:", error);
+        msg.innerText = "Failed to load exchange rates. Try again.";
+    }
+    
+}
+
+btn.addEventListener("click", (evnt) => {
     evnt.preventDefault();
     generateRate();
-})
+});
+
 window.addEventListener("load", () => {
     generateRate();
-  });
-
+});
