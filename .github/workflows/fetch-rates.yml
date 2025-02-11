@@ -1,0 +1,26 @@
+name: Fetch Currency Rates
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight (UTC)
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  fetch-rates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch currency exchange rates
+        run: |
+          curl -s "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2025-01-06/v1/currencies.json" -o currencies.json
+
+      - name: Commit and Push Updated Rates
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add currencies.json
+          git commit -m "Updated exchange rates"
+          git push
+        continue-on-error: true  # Prevents failure if no changes
