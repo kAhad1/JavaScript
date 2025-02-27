@@ -78,10 +78,7 @@ p {
   font-size: 1.2rem;
 }
 
-/* @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-} */
+
 
 
 #bg-video {
@@ -96,23 +93,3 @@ p {
 
 
 
-/* option 2 */
-/* body.sunny {
-  background: url('sunny.jpg') no-repeat center center/cover;
-}
-
-body.cloudy {
-  background: url('cloudy.jpg') no-repeat center center/cover;
-}
-
-body.rainy {
-  background: url('rainy.jpg') no-repeat center center/cover;
-}
-
-body.snowy {
-  background: url('snowy.jpg') no-repeat center center/cover;
-}
-
-body.default {
-  background: linear-gradient(135deg, #1E3C72, #2A5298);
-} */

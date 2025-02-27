@@ -3,11 +3,9 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
   const city = document.getElementById("cityInput").value.trim();
   const weatherResult = document.getElementById("weatherResult");
 
-  // Remove the class to reset animation
   weatherResult.classList.remove("show");
   setTimeout(() => {
-    // Add the class back after a short delay
-    weatherResult.classList.add("show");
+     weatherResult.classList.add("show");
   }, 180);
 
   if (city === "") {
@@ -18,13 +16,17 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
   try {
     const weatherData = await fetchWeather(city);
     displayWeather(weatherData);
-    setWeatherBackground(weatherData.current.condition.text); // Set background based on weather condition
+    setWeatherBackground(weatherData.current.condition.text); 
   } catch (error) {
     alert("Could not fetch weather data. Please check the city name or try again later.");
     console.error(error);
   }
 });
-
+document.getElementById("cityInput").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    document.getElementById("searchBtn").click(); 
+  }
+});
 const fetchWeather = async (city) => {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
   const response = await fetch(url);
