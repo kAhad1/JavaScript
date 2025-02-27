@@ -1,6 +1,6 @@
 const apiKey = "6046ddfee28c49d69a4193920250201"; 
 
-// List of all video paths
+
 const videoPaths = [
   "videos/clear.mp4",
   "videos/partlycloudy.mp4",
@@ -24,7 +24,7 @@ const videoPaths = [
   "videos/thunderstorm.mp4"
 ];
 
-// Function to preload videos
+
 function preloadVideos() {
   videoPaths.forEach((path) => {
     const video = document.createElement("video");
@@ -34,7 +34,6 @@ function preloadVideos() {
 }
 
 
-// Preload videos when the page loads
 window.onload = preloadVideos;
 
 document.getElementById("searchBtn").addEventListener("click", async () => {
