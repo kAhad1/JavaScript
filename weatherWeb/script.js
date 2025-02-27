@@ -1,11 +1,49 @@
 const apiKey = "6046ddfee28c49d69a4193920250201"; 
+
+// List of all video paths
+const videoPaths = [
+  "videos/clear.mp4",
+  "videos/partlycloudy.mp4",
+  "videos/sunny.mp4",
+  "videos/cloudy.mp4",
+  "videos/overcast.mp4",
+  "videos/rainy.mp4",
+  "videos/snowy.mp4",
+  "videos/light-snow-shower.mp4",
+  "videos/light-snow.mp4",
+  "videos/freezing-fog.mp4",
+  "videos/mist2.mp4",
+  "videos/Fogg.mp4",
+  "videos/patchy-rain.mp4",
+  "videos/light-rain.mp4",
+  "videos/freezing-rain.mp4",
+  "videos/heavy-rain.mp4",
+  "videos/moderate-rain.mp4",
+  "videos/Blizzard.mp4",
+  "videos/moderate-rain-thunder.mp4",
+  "videos/thunderstorm.mp4"
+];
+
+// Function to preload videos
+function preloadVideos() {
+  videoPaths.forEach((path) => {
+    const video = document.createElement("video");
+    video.src = path;
+    video.preload = "auto"; 
+  });
+}
+
+
+// Preload videos when the page loads
+window.onload = preloadVideos;
+
 document.getElementById("searchBtn").addEventListener("click", async () => {
   const city = document.getElementById("cityInput").value.trim();
   const weatherResult = document.getElementById("weatherResult");
 
   weatherResult.classList.remove("show");
   setTimeout(() => {
-     weatherResult.classList.add("show");
+    weatherResult.classList.add("show");
   }, 180);
 
   if (city === "") {
@@ -22,11 +60,13 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     console.error(error);
   }
 });
+
 document.getElementById("cityInput").addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     document.getElementById("searchBtn").click(); 
   }
 });
+
 const fetchWeather = async (city) => {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
   const response = await fetch(url);
@@ -57,58 +97,46 @@ function setWeatherBackground(condition) {
     videoPath = "videos/clear.mp4";
   } else if (condition.includes('Partly cloudy')) {
     videoPath = "videos/partlycloudy.mp4";
-
   } else if (condition.includes('Sunny')) {
     videoPath = "videos/sunny.mp4";
-
   } else if (condition.includes('Cloudy')) {
     videoPath = "videos/cloudy.mp4";
-
   } else if (condition.includes('Overcast')) {
     videoPath = "videos/overcast.mp4";
   } else if (condition.includes('Rain')) {
     videoPath = "videos/rainy.mp4";
   } else if (condition.includes('Heavy snow')) {
     videoPath = "videos/snowy.mp4";
-  }   else if (condition.includes('Light snow showers')) {
+  } else if (condition.includes('Light snow showers')) {
     videoPath = "videos/light-snow-shower.mp4";
-  }else if (condition.includes('snow')) {
+  } else if (condition.includes('snow')) {
     videoPath = "videos/light-snow.mp4";
-  } 
-  else if (condition.includes('Freezing fog')) {
+  } else if (condition.includes('Freezing fog')) {
     videoPath = "videos/freezing-fog.mp4";
-
   } else if (condition.includes('Mist')) {
     videoPath = "videos/mist2.mp4";
-  }else if (condition.includes('Fog')) {
+  } else if (condition.includes('Fog')) {
     videoPath = "videos/Fogg.mp4";
-  }  
-   else if (condition.includes('Patchy rain') ) {
+  } else if (condition.includes('Patchy rain')) {
     videoPath = "videos/patchy-rain.mp4";
-  } else if (condition.includes('Light rain') ) {
+  } else if (condition.includes('Light rain')) {
     videoPath = "videos/light-rain.mp4";
-  }  else if (condition.includes('freezing rain') ) {
+  } else if (condition.includes('freezing rain')) {
     videoPath = "videos/freezing-rain.mp4";
-  }  else if (condition.includes('Heavy rain')) {
+  } else if (condition.includes('Heavy rain')) {
     videoPath = "videos/heavy-rain.mp4";
   } else if (condition.includes('Moderate rain')) {
     videoPath = "videos/moderate-rain.mp4";
-  }
-  else if (condition.includes('Blizzard')) {
+  } else if (condition.includes('Blizzard')) {
     videoPath = "videos/Blizzard.mp4";
-  }
-  
-  else if (condition.includes('Thunder') || condition.includes('Patchy light rain in area with thunder') || condition.includes("heavy rain")) {
+  } else if (condition.includes('Thunder') || condition.includes('Patchy light rain in area with thunder') || condition.includes("heavy rain")) {
     videoPath = "videos/moderate-rain-thunder.mp4";
+  } else if (condition.includes('thunder')) {
+    videoPath = "videos/thunderstorm.mp4";
   }
-  else if(condition.includes('thunder')){
-    videoPath= "videos/thunderstorm.mp4"
-  }
- 
 
-  videoElement.src = videoPath; 
-  videoElement.load(); 
+  videoElement.src = videoPath;
+videoElement.load(); 
+videoElement.play();
+
 }
-
-
-
