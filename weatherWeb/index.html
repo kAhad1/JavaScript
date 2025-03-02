@@ -6,14 +6,29 @@
   <title>Weather Web</title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="videos/weather.png" type="image/x-icon">
-<link rel="icon" href="videos/weather.png" type="image/x-icon">
-
+  <link rel="icon" href="videos/weather.png" type="image/x-icon">
 </head>
 <body>
+  <div id="overlay"></div>
+  <div id="loadingSpinner" class="hidden">
+    <div class="spinner"></div>
+  </div>
   <div class="container">
     <h1>Weather Web</h1>
     <div class="search">
-      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <input type="text" id="cityInput" placeholder="Enter city name" list="citySuggestions" />
+      <datalist id="citySuggestions">
+        <option value="London">
+        <option value="New York">
+        <option value="Paris">
+        <option value="Tokyo">
+        <option value="Sydney">
+        <option value="Berlin">
+        <option value="Moscow">
+        <option value="Dubai">
+        <option value="Mumbai">
+        <option value="Beijing">
+      </datalist>
       <button id="searchBtn">Get Weather</button>
     </div>
     <div id="weatherResult" class="hidden">
@@ -25,8 +40,6 @@
   </div>
 
   <video autoplay loop muted playsinline id="bg-video" src="videos/weather-video.mp4"></video>
-
-
 
   <script src="script.js"></script>
 </body>

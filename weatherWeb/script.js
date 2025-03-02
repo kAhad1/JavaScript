@@ -49,7 +49,7 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     alert("Please enter a city name.");
     return;
   }
-
+  document.getElementById("loadingSpinner").classList.remove("hidden");
   try {
     const weatherData = await fetchWeather(city);
     displayWeather(weatherData);
@@ -57,6 +57,9 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
   } catch (error) {
     alert("Could not fetch weather data. Please check the city name or try again later.");
     console.error(error);
+  }finally {
+    // Hide the loading spinner
+    document.getElementById("loadingSpinner").classList.add("hidden");
   }
 });
 
