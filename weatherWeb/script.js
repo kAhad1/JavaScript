@@ -68,7 +68,41 @@ document.getElementById("cityInput").addEventListener("keydown", function(event)
     document.getElementById("searchBtn").click(); 
   }
 });
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
 
+document.getElementById("cityInput").addEventListener("input", debounce(async function () {
+  const query = this.value.trim();
+  const dataList = document.getElementById("citySuggestions");
+  dataList.innerHTML = ""; 
+
+  if (query.length < 3) return; 
+
+  try {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?city=${query}&format=json&limit=5`);
+    const data = await response.json();
+
+    
+    const uniqueCities = new Set();
+    data.forEach(place => {
+      const cityName = place.display_name.split(',')[0]; 
+      uniqueCities.add(cityName);
+    });
+
+    uniqueCities.forEach(city => {
+      let option = document.createElement("option");
+      option.value = city;
+      dataList.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Error fetching city suggestions:", error);
+  }
+}, 300));
 const fetchWeather = async (city) => {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
   const response = await fetch(url);
