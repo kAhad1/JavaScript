@@ -58,7 +58,7 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     alert("Could not fetch weather data. Please check the city name or try again later.");
     console.error(error);
   }finally {
-    // Hide the loading spinner
+
     document.getElementById("loadingSpinner").classList.add("hidden");
   }
 });
@@ -82,18 +82,17 @@ document.getElementById("cityInput").addEventListener("input", debounce(async fu
   dataList.innerHTML = ""; 
 
   if (query.length < 3) return; 
-
   try {
     const response = await fetch(`https://nominatim.openstreetmap.org/search?city=${query}&format=json&limit=5`);
     const data = await response.json();
 
-    
     const uniqueCities = new Set();
     data.forEach(place => {
-      const cityName = place.display_name.split(',')[0]; 
+      const cityName = place.display_name.split(',')[0];
       uniqueCities.add(cityName);
     });
 
+  
     uniqueCities.forEach(city => {
       let option = document.createElement("option");
       option.value = city;
@@ -102,7 +101,8 @@ document.getElementById("cityInput").addEventListener("input", debounce(async fu
   } catch (error) {
     console.error("Error fetching city suggestions:", error);
   }
-}, 300));
+}, 300)); 
+
 const fetchWeather = async (city) => {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
   const response = await fetch(url);
