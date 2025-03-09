@@ -63,6 +63,7 @@ if (document.getElementById('sign-in-btn')) {
                 if (userData.role === "admin") {
                     alert("Admin login successful!");
                     window.location.href = "admin-dashboard.html";
+                    
                 } else {
                     alert("User login successful!");
                     window.location.href = "products.html";
@@ -96,36 +97,26 @@ if (document.getElementById('back-btn')) {
 // Authentication State Listener
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-      console.log("User is signed in:", user.uid);
-
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
 
       if (userSnap.exists()) {
           const userData = userSnap.data();
-            console.log("User Data from Firestore:", userData);
 
-          // Redirect unauthorized users from admin-dashboard.html
-          if (window.location.pathname.includes("admin-dashboard.html") && userData.role !== "admin") {
-              alert("Unauthorized access! Redirecting to login.");
-              window.location.href = "index.html";
+          // Admins can access all pages
+          if (userData.role === "admin") {
+              console.log("Admin accessed:", window.location.pathname);
+          } 
+          // Users can only access products.html
+          else if (userData.role === "user") {
+              if (window.location.pathname.includes("admin-dashboard.html")) {
+                  alert("Unauthorized access! Redirecting to products page.");
+                  window.location.href = "products.html";
+              }
           }
-
-          // Redirect unauthorized users from products.html
-          if (window.location.pathname.includes("products.html") && userData.role !== "user") {
-              alert("Unauthorized access! Redirecting to login.");
-              window.location.href = "index.html";
-          }
-      } else {
-          console.log("User data not found in Firestore!");
-          alert("User role not found! Contact support.");
-          await signOut(auth); // Logout invalid users
-          window.location.href = "index.html";
       }
   } else {
-      console.log("No user is signed in.");
-
-      // Redirect to index.html if the user is not signed in and tries to access products.html or admin-dashboard.html
+      // Redirect to login page if not signed in and trying to access protected pages
       if (window.location.pathname.includes("products.html") || window.location.pathname.includes("admin-dashboard.html")) {
           alert("You must sign in to access this page.");
           window.location.href = "index.html";
