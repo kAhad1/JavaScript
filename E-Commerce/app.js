@@ -65,8 +65,10 @@ if (document.getElementById('sign-in-btn')) {
                     window.location.href = "admin-dashboard.html";
                     
                 } else {
-                    alert("User login successful!");
+                    alert(`Welcome ${userData.name} !`);
+                    
                     window.location.href = "products.html";
+                    
                 }
             } else {
                 alert("User role not found! Contact support.");
@@ -132,3 +134,4 @@ if (document.getElementById('sign-out-btn')) {
       window.location.href = "index.html";
   });
 }
+export { app, auth, db };

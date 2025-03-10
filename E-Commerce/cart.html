@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="cart.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -20,20 +21,11 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Our Store</h1>
-            <p>Discover amazing products at great prices.</p>
-            <a href="#products" class="hero-btn">Shop Now</a>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products-section">
-        <h2>Our Products</h2>
-        <div id="products-container" class="products-container">
-            <!-- Products will be dynamically inserted here -->
+    <!-- Cart Section -->
+    <section id="cart" class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-container" class="cart-container">
+            <!-- Cart items will be dynamically inserted here -->
         </div>
     </section>
 
@@ -43,6 +35,6 @@
     </footer>
 
     <script type="module" src="app.js"></script>
-    <script type="module" src="product.js"></script>
+    <script type="module" src="cart.js"></script>
 </body>
 </html>
