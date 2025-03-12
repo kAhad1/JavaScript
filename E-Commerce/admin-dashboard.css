@@ -1,0 +1,80 @@
+/* Custom styles to complement Bootstrap */
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.products-section {
+    min-height: calc(100vh - 300px);
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Form styling */
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Responsive image handling */
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Card description text */
+.card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Price styling */
+.card-text strong {
+    color: #0d6efd;
+    font-size: 1.2em;
+}
+
+/* Date styling */
+.text-muted {
+    font-size: 0.85em;
+}
+
+/* Form card styling */
+#add-product .card {
+    border: none;
+    border-radius: 10px;
+}
+
+#add-product .card-header {
+    border-radius: 10px 10px 0 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}

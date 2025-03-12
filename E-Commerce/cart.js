@@ -2,15 +2,6 @@ import { app, db, auth } from "./app.js";
 import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBikyi3yyesNE5ZsM1P3uhLg03f4TIPz1Q",
-    authDomain: "e-commerce-cffcc.firebaseapp.com",
-    projectId: "e-commerce-cffcc",
-    storageBucket: "e-commerce-cffcc.firebasestorage.app",
-    messagingSenderId: "341756955843",
-    appId: "1:341756955843:web:a950743727b5b080f1a676"
-};
-
 // Function to fetch and display cart items
 const fetchCartItems = async (user) => {
     const cartContainer = document.getElementById('cart-container');
@@ -50,13 +41,13 @@ const fetchCartItems = async (user) => {
                     totalAmount += itemTotal;
 
                     const cartItemElement = `
-                        <div class="cart-item">
+                        <div class="cart-item" data-id="${productId}">
                             <img src="${product.image}" alt="${product.name}">
                             <h3>${product.name}</h3>
                             <p>${product.description}</p>
                             <p>Rs ${product.price} x ${quantity} = Rs ${itemTotal}</p>
                             <button class="decrease-quantity-btn" data-id="${productId}">-</button>
-                            <span>${quantity}</span>
+                            <span class="quantity">${quantity}</span>
                             <button class="increase-quantity-btn" data-id="${productId}">+</button>
                             <button class="remove-from-cart-btn" data-id="${productId}">Remove</button>
                         </div>
@@ -75,6 +66,43 @@ const fetchCartItems = async (user) => {
         }
     } catch (error) {
         console.error("Error fetching cart items:", error);
+    }
+};
+
+// Function to update the quantity in the DOM
+const updateQuantityInDOM = (productId, newQuantity) => {
+    const cartItem = document.querySelector(`.cart-item[data-id="${productId}"]`);
+    if (cartItem) {
+        const quantityElement = cartItem.querySelector('.quantity');
+        const priceElement = cartItem.querySelector('p:nth-of-type(2)'); // Price x Quantity = Total
+        const productPrice = parseFloat(priceElement.textContent.split('Rs ')[1].split(' x')[0]);
+
+        // Update the quantity in the DOM
+        quantityElement.textContent = newQuantity;
+
+        // Update the total price for this item
+        const newItemTotal = productPrice * newQuantity;
+        priceElement.textContent = `Rs ${productPrice} x ${newQuantity} = Rs ${newItemTotal}`;
+    }
+
+    // Recalculate and update the total amount
+    updateTotalAmount();
+};
+
+// Function to update the total amount in the DOM
+const updateTotalAmount = () => {
+    const cartItems = document.querySelectorAll('.cart-item');
+    let totalAmount = 0;
+
+    cartItems.forEach((item) => {
+        const priceElement = item.querySelector('p:nth-of-type(2)');
+        const itemTotal = parseFloat(priceElement.textContent.split('Rs ')[2]);
+        totalAmount += itemTotal;
+    });
+
+    const totalElement = document.querySelector('.cart-total h3');
+    if (totalElement) {
+        totalElement.textContent = `Total Amount: Rs ${totalAmount}`;
     }
 };
 
@@ -102,14 +130,11 @@ const removeFromCart = async (user, productId) => {
 
 // Function to increase the quantity of a product in the cart
 const increaseQuantity = async (user, productId) => {
-    
     try {
-        
         const userRef = doc(db, "users", user.uid);
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-            
             const userData = userSnap.data();
             const cart = userData.cart || [];
 
@@ -118,7 +143,10 @@ const increaseQuantity = async (user, productId) => {
 
             // Update the cart in Firestore
             await updateDoc(userRef, { cart: cart });
-            fetchCartItems(user); // Refresh the cart display
+
+            // Update the quantity in the DOM without refreshing the entire cart
+            const currentQuantity = parseInt(document.querySelector(`.cart-item[data-id="${productId}"] .quantity`).textContent);
+            updateQuantityInDOM(productId, currentQuantity + 1);
         }
     } catch (error) {
         console.error("Error increasing product quantity:", error);
@@ -143,7 +171,15 @@ const decreaseQuantity = async (user, productId) => {
 
                 // Update the cart in Firestore
                 await updateDoc(userRef, { cart: cart });
-                fetchCartItems(user); // Refresh the cart display
+
+                // Update the quantity in the DOM without refreshing the entire cart
+                const currentQuantity = parseInt(document.querySelector(`.cart-item[data-id="${productId}"] .quantity`).textContent);
+                if (currentQuantity > 1) {
+                    updateQuantityInDOM(productId, currentQuantity - 1);
+                } else {
+                    // If quantity is 0, remove the item from the DOM
+                    fetchCartItems(user);
+                }
             }
         }
     } catch (error) {

@@ -43,7 +43,6 @@ const fetchProducts = async () => {
     }
 };
 
-// Add to Cart Logic
 document.addEventListener('click', async (e) => {
     if (e.target.classList.contains('add-to-cart-btn')) {
         const productId = e.target.getAttribute('data-id');
@@ -76,7 +75,6 @@ document.addEventListener('click', async (e) => {
     }
 });
 
-// Save to Favorites Logic
 document.addEventListener('click', async (e) => {
     if (e.target.classList.contains('favorite-btn')) {
         const productId = e.target.getAttribute('data-id');
@@ -109,7 +107,6 @@ document.addEventListener('click', async (e) => {
     }
 });
 
-// Call fetchProducts when the products page loads
 if (window.location.pathname.includes("products.html")) {
     fetchProducts();
 }

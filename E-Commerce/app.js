@@ -97,35 +97,43 @@ if (document.getElementById('back-btn')) {
 }
 
 // Authentication State Listener
+// Authentication State Listener
 onAuthStateChanged(auth, async (user) => {
-  if (user) {
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
+    if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
 
-      if (userSnap.exists()) {
-          const userData = userSnap.data();
+        if (userSnap.exists()) {
+            const userData = userSnap.data();
 
-          // Admins can access all pages
-          if (userData.role === "admin") {
-              console.log("Admin accessed:", window.location.pathname);
-          } 
-          // Users can only access products.html
-          else if (userData.role === "user") {
-              if (window.location.pathname.includes("admin-dashboard.html")) {
-                  alert("Unauthorized access! Redirecting to products page.");
-                  window.location.href = "products.html";
-              }
-          }
-      }
-  } else {
-      // Redirect to login page if not signed in and trying to access protected pages
-      if (window.location.pathname.includes("products.html") || window.location.pathname.includes("admin-dashboard.html")) {
-          alert("You must sign in to access this page.");
-          window.location.href = "index.html";
-      }
-  }
+            // Show Admin Dashboard link if the user is an admin
+            if (userData.role === "admin") {
+                const adminDashboardLink = document.getElementById('admin-dashboard-link');
+                if (adminDashboardLink) {
+                    adminDashboardLink.style.display = 'block';
+                }
+            }
+
+            // Admins can access all pages
+            if (userData.role === "admin") {
+                console.log("Admin accessed:", window.location.pathname);
+            } 
+            // Users can only access products.html
+            else if (userData.role === "user") {
+                if (window.location.pathname.includes("admin-dashboard.html")) {
+                    alert("Unauthorized access! Redirecting to products page.");
+                    window.location.href = "products.html";
+                }
+            }
+        }
+    } else {
+        // Redirect to login page if not signed in and trying to access protected pages
+        if (window.location.pathname.includes("products.html") || window.location.pathname.includes("admin-dashboard.html")) {
+            alert("You must sign in to access this page.");
+            window.location.href = "index.html";
+        }
+    }
 });
-
 
 if (document.getElementById('sign-out-btn')) {
   document.getElementById('sign-out-btn').addEventListener('click', async () => {
