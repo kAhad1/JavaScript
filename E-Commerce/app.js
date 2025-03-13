@@ -15,7 +15,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Sign Up Logic
 if (document.getElementById('sign-up-btn')) {
     document.getElementById('sign-up-btn').addEventListener("click", async (e) => {
       e.preventDefault();
@@ -44,7 +43,6 @@ if (document.getElementById('sign-up-btn')) {
     });
 }
 
-// Sign In Logic
 if (document.getElementById('sign-in-btn')) {
     document.getElementById('sign-in-btn').addEventListener("click", async (e) => {
       e.preventDefault()
@@ -80,7 +78,6 @@ if (document.getElementById('sign-in-btn')) {
     });
 }
 
-// Toggle between Sign In and Sign Up forms
 if (document.getElementById('signin-btn')) {
     document.getElementById('signin-btn').addEventListener('click', () => {
     
@@ -96,8 +93,6 @@ if (document.getElementById('back-btn')) {
     });
 }
 
-// Authentication State Listener
-// Authentication State Listener
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const userRef = doc(db, "users", user.uid);
@@ -106,7 +101,6 @@ onAuthStateChanged(auth, async (user) => {
         if (userSnap.exists()) {
             const userData = userSnap.data();
 
-            // Show Admin Dashboard link if the user is an admin
             if (userData.role === "admin") {
                 const adminDashboardLink = document.getElementById('admin-dashboard-link');
                 if (adminDashboardLink) {
@@ -114,11 +108,9 @@ onAuthStateChanged(auth, async (user) => {
                 }
             }
 
-            // Admins can access all pages
             if (userData.role === "admin") {
                 console.log("Admin accessed:", window.location.pathname);
             } 
-            // Users can only access products.html
             else if (userData.role === "user") {
                 if (window.location.pathname.includes("admin-dashboard.html")) {
                     alert("Unauthorized access! Redirecting to products page.");
@@ -127,7 +119,6 @@ onAuthStateChanged(auth, async (user) => {
             }
         }
     } else {
-        // Redirect to login page if not signed in and trying to access protected pages
         if (window.location.pathname.includes("products.html") || window.location.pathname.includes("admin-dashboard.html")) {
             alert("You must sign in to access this page.");
             window.location.href = "index.html";

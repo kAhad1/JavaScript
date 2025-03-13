@@ -9,9 +9,12 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">E-Commerce</a>
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="Bootstrap" width="70" height="54">
+                SportsHub
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,10 +24,13 @@
                         <a class="nav-link" href="products.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.html">Cart</a>
+                        <a class="nav-link active" href="cart.html">Cart</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="wishlist.html">Wishlist</a>
+                    </li>
+                    <li class="nav-item" id="admin-dashboard-link" style="display: none;">
+                        <a class="nav-link" href="admin-dashboard.html">Admin Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <button id="sign-out-btn" class="btn btn-danger">Sign Out</button>
@@ -39,8 +45,7 @@
         <div class="container">
             <h2 class="text-center mb-4">Your Cart</h2>
             <div id="cart-container" class="row row-cols-1 g-4">
-                <!-- Cart items will be dynamically inserted here -->
-            </div>
+              </div>
             <div class="cart-total text-end mt-4">
        
             </div>
@@ -50,7 +55,7 @@
     <!-- Footer -->
     <footer class="footer bg-dark text-white text-center py-3">
         <div class="container">
-            <p class="mb-0">&copy; 2025 E-Commerce. All rights reserved.</p>
+            <p class="mb-0"> 2025 SportsHub. All rights reserved.</p>
         </div>
     </footer>
 

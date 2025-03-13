@@ -9,40 +9,64 @@
 </head>
 <body>
     <!-- Navbar -->
- <!-- Navbar in products.html -->
-<nav class="navbar navbar-expand-lg  navbar-body-light  ">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">E-Commerce</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="products.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="wishlist.html">Wishlist</a>
-                </li>
-                <li class="nav-item" id="admin-dashboard-link" style="display: none;">
-                    <a class="nav-link" href="admin-dashboard.html">Admin Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <button id="sign-out-btn" class="btn btn-danger">Sign Out</button>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="Bootstrap" width="70" height="54">
+                SportsHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wishlist.html">Wishlist</a>
+                    </li>
+                    <li class="nav-item" id="admin-dashboard-link" style="display: none;">
+                        <a class="nav-link" href="admin-dashboard.html">Admin Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="sign-out-btn" class="btn btn-danger">Sign Out</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero bg-secondary text-white text-center py-5">
-        <div class="container">
-            <h1 class="display-4">Welcome to Our Store</h1>
-            <p class="lead">Discover amazing products at great prices.</p>
+    <!-- Hero Section with Carousel -->
+    <section class="hero">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('images/carouselImg.jpeg');"></div>
+                <div class="carousel-item" style="background-image: url('images/carouselImg2.jpeg');"></div>
+                <div class="carousel-item" style="background-image: url('images/carouselImg3.webp');"></div>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="display-4">Welcome to SportsHub</h1>
+            <p class="lead">Discover amazing sports products at great prices.</p>
             <a href="#products" class="btn btn-primary btn-lg">Shop Now</a>
         </div>
     </section>
@@ -53,36 +77,39 @@
             <h2 class="text-center mb-4">Our Products</h2>
             <div id="products-container" class="row row-cols-1 row-cols-md-3 g-4">
                 <!-- Product Card 1 -->
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="path/to/image1.png" class="card-img-top" alt="Goalkeeper Gloves">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Goalkeeper Gloves</h5>
-                            <p class="card-text">Walker Soccer Goalie Gloves</p>
-                            <p class="card-text"><strong>Rs 1000</strong></p>
-                            <div class="mt-auto d-flex justify-content-between">
-                                <button class="btn btn-primary">Add to Cart</button>
-                                <button class="btn btn-secondary">Save to Favorites</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="path/to/image2.png" class="card-img-top" alt="Nike Shoes">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Nike Shoes</h5>
-                            <p class="card-text">Buy Nike Invincible 3 Men's Road Running Shoes</p>
-                            <p class="card-text"><strong>Rs 1700</strong></p>
-                            <div class="mt-auto d-flex justify-content-between">
-                                <button class="btn btn-primary">Add to Cart</button>
-                                <button class="btn btn-secondary">Save to Favorites</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
+              <!-- Product Card 1 -->
+<div class="col ">
+    <div class="card h-100">
+        <img src="path/to/image1.png" class="card-img-top" alt="Goalkeeper Gloves">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Goalkeeper Gloves</h5>
+            <p class="card-text">Walker Soccer Goalie Gloves</p>
+            <p class="card-text"><strong>Rs 1000</strong></p>
+            <div class="btn-container">
+                <button class="btn btn-primary">Add to Cart</button>
+                <button class="btn btn-secondary">Save to Favorites</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Card 2 -->
+<div class="col">
+    <div class="card h-100">
+        <img src="path/to/image2.png" class="card-img-top" alt="Nike Shoes">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Nike Shoes</h5>
+            <p class="card-text">Buy Nike Invincible 3 Men's Road Running Shoes</p>
+            <p class="card-text"><strong>Rs 1700</strong></p>
+            <div class="btn-container">
+                <button class="btn btn-primary">Add to Cart</button>
+                <button class="btn btn-secondary">Save to Favorites</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Repeat for other product cards -->
             </div>
         </div>
     </section>
@@ -90,7 +117,7 @@
     <!-- Footer -->
     <footer class="footer bg-dark text-white text-center py-3">
         <div class="container">
-            <p class="mb-0">&copy; 2025 E-Commerce. All rights reserved.</p>
+            <p class="mb-0"> 2025 SportsHub. All rights reserved.</p>
         </div>
     </footer>
 

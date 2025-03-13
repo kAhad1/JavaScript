@@ -9,44 +9,28 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: #007bff;
+    background-color: #150476;
     padding: 10px 20px;
-    color: white;
-    
 }
 
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar-logo {
+.navbar-brand {
+    color: white !important; /* Ensure pure white color */
     font-size: 24px;
     font-weight: bold;
-    text-decoration: none;
-    color: white;
-}
-
-.navbar-menu {
-    list-style: none;
     display: flex;
-    margin: 0;
-    padding: 0;
     align-items: center;
 }
 
-.navbar-menu li {
-    margin-left: 20px;
+.navbar-brand img {
+    margin-right: 10px;
 }
 
-.navbar-menu a {
-    color: white;
-    text-decoration: none;
+.navbar-nav .nav-link {
+    color: white !important; /* Ensure pure white color */
     font-size: 16px;
 }
 
-.navbar-menu a:hover {
+.navbar-nav .nav-link:hover {
     text-decoration: underline;
 }
 
@@ -63,18 +47,46 @@ body {
     background-color: #c82333;
 }
 
-/* Hero Section */
+/* Hero Section Carousel */
 .hero {
-    /* background: url('hero-image.jpg') no-repeat center center/cover; */
     height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-item:nth-child(1) {
+    background-image: url('images/carouselImg.jpeg'); /* Replace with your image path */
+}
+
+.carousel-item:nth-child(2) {
+    background-image: url('images/hero2.jpg'); /* Replace with your image path */
+}
+
+.carousel-item:nth-child(3) {
+    background-image: url('images/hero3.jpg'); /* Replace with your image path */
 }
 
 .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
@@ -102,7 +114,6 @@ body {
 .hero-btn:hover {
     background-color: #0056b3;
 }
-
 /* Products Section */
 .products-section {
     padding: 20px;
@@ -144,7 +155,23 @@ body {
     margin: 5px 0;
     color: #555;
 }
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body .btn-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
 .add-to-cart-btn, .favorite-btn {
     background-color: #007bff;
     color: white;
