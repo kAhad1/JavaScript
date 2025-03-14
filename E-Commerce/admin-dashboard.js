@@ -112,7 +112,6 @@ const fetchProducts = async () => {
     }
 };
 
-// Function to set up edit buttons
 const setupEditButtons = () => {
     document.querySelectorAll('.edit-btn').forEach(button => {
         button.addEventListener('click', async (e) => {

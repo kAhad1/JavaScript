@@ -15,15 +15,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Function to fetch and display products
 const fetchProducts = async () => {
     const productsContainer = document.getElementById('products-container');
-    if (!productsContainer) return; // Exit if the container doesn't exist
+    if (!productsContainer) return;
 
     try {
         const querySnapshot = await getDocs(collection(db, "products"));
-        productsContainer.innerHTML = ""; // Clear existing content
-
+        productsContainer.innerHTML = ""; 
         querySnapshot.forEach((doc) => {
             const product = doc.data();
             const productElement = `
@@ -55,9 +53,7 @@ document.addEventListener('click', async (e) => {
 
                 if (userSnap.exists()) {
                     const userData = userSnap.data();
-                    const cart = userData.cart || []; // Initialize cart if it doesn't exist
-
-                    // Add product to cart
+                    const cart = userData.cart || []; 
                     if (!cart.includes(productId)) {
                         cart.push(productId);
                         await setDoc(userRef, { cart: cart }, { merge: true });
@@ -87,9 +83,7 @@ document.addEventListener('click', async (e) => {
 
                 if (userSnap.exists()) {
                     const userData = userSnap.data();
-                    const favorites = userData.favorites || []; // Initialize favorites if it doesn't exist
-
-                    // Add product to favorites
+                    const favorites = userData.favorites || [];
                     if (!favorites.includes(productId)) {
                         favorites.push(productId);
                         await setDoc(userRef, { favorites: favorites }, { merge: true });
